@@ -21,3 +21,19 @@
 
 en:
   sign_out: Sign out
+  food_place_saved: Food place saved
+  food_place_not_saved: Food place not saved
+  all_places: All places
+  name: Name
+  phone_number: Phone number
+  edit: Edit
+  delete:  Delete
+  general_information: General information
+  address: Address
+  time: Time
+  address1: Address 1
+  address2: Address 2
+  state: State
+  city: City
+  edit_food_place: Edit food place
+  new_food_place: New food place

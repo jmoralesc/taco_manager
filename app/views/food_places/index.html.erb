@@ -1,0 +1,25 @@
+
+<h1><%= t(:all_places) %></h1>
+
+<table id='food_places' class='table'>
+  <thead>
+    <tr>
+      <th><%= t(:name) %></th>
+      <th><%= t(:phone_number) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @food_places.each do |food_place| %>
+      <tr>
+        <td> <%= food_place.name %></td>
+        <td> <%= food_place.phone_number %></td>
+        <td>  
+          <%= link_to t(:edit), edit_food_place_path(food_place) %>
+          <%= link_to t(:delete) , food_place_path(food_place), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  
