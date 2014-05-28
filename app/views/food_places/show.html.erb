@@ -22,3 +22,5 @@
     <%= @food_place.city %>
   </div>
 </div>
+
+<%= render partial: 'menu_option', collection: @food_place.menu_options %>
