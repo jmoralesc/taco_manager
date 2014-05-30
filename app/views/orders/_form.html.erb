@@ -1,0 +1,26 @@
+<%= form_for @order, html: {class: 'form-horizontal', role: 'form'} do |form| %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= form.select :food_place_id, @food_places.map {|place| [place.name, place.id]}, class: 'form-control' %>
+      </div>
+    </div>  
+
+	  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <% if @menu_options %> 
+	       <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
+            <%= render 'menu_line_item_fields', :f => menu_line_item %> 
+	       <% end %>
+	       <%= link_to_add_association form, :menu_line_items , {:class => 'btn btn-link"'} do%>
+           <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        <% end %>
+	   </div>
+    </div> 
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= form.submit "Submit" , class: 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>

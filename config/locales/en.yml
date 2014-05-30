@@ -43,3 +43,10 @@ en:
   edit_menu_option: Edit menu option
   price: Price
   menu_options: Menu Options
+  order_saved: Order saved
+  order_not_saved: Order not saved
+  new_order: New order
+  edit_order: Edit order
+  menu_line_item_saved: Menu line item saved
+  menu_line_item_not_saved: Menu line item not saved
+  quantity: Quantity

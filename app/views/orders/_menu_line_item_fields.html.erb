@@ -1,0 +1,11 @@
+<div class="nested-fields form-group" >
+  <div class="field col-sm-10"> 
+    
+    <%= f.select :menu_option_id, @menu_options.map {|option| [option.name, option.id]}, class: 'form-control' %>   
+    <%= f.number_field :quantiy, placeholder: t(:quantity), class: 'form-control' %>
+    <%= link_to_remove_association f , {:class => 'btn btn-link"'} do %>
+      <span class="glyphicon glyphicon-remove"></span>
+    <% end %> 
+            
+  </div>
+</div>
