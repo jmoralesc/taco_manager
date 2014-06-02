@@ -47,6 +47,6 @@ class FoodPlacesController < ApplicationController
   end	
   
   def food_place_params
-    params.require(:food_place).permit(:name, :phone_number, :time, :address1, :address2, :city, :state)
+    params.require(:food_place).permit(:name, :phone_number, :time, :address1, :address2, :city, :state, :photo)
   end
 end
