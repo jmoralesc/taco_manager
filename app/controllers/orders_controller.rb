@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
   def edit; end
 
   def update
+    #binding.pry
   	if @order.update_attributes(order_params)
   	  flash[:success] = t(:order_saved)
   	  redirect_to edit_order_path(@order) 
@@ -62,6 +63,6 @@ class OrdersController < ApplicationController
   end
   
   def order_params
-    params.require(:order).permit(:food_place_id, menu_line_items_attributes: [:order_id, :quantiy, :menu_option_id, :_destroy])
+    params.require(:order).permit(:food_place_id, menu_line_items_attributes: [:id, :menu_option_id, :quantiy, :_destroy])
   end
 end

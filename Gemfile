@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'sqlite3'
+  gem 'pry-rails'
 end
 
 group :production do

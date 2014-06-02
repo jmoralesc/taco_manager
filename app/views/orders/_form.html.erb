@@ -9,7 +9,7 @@
       <div class="col-sm-offset-2 col-sm-10">
         <% if @menu_options %> 
 	       <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
-            <%= render 'menu_line_item_fields', :f => menu_line_item %> 
+            <%= render 'menu_line_item_fields', f: menu_line_item %> 
 	       <% end %>
 	       <%= link_to_add_association form, :menu_line_items , {:class => 'btn btn-link"'} do%>
            <span class="glyphicon glyphicon-plus"></span>
