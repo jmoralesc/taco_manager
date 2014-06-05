@@ -3,7 +3,8 @@ class FoodPlacesController < ApplicationController
   before_action :find_place, only: [:show, :edit, :update, :destroy]
   
   def index
-  	@food_places = FoodPlace.all
+    @food_places = FoodPlace.order("name").page(params[:page]).per(10)
+  	#@food_places = FoodPlace.all
   end
   
   def show; end

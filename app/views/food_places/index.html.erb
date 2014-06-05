@@ -1,25 +1,29 @@
 
-<h1><%= t(:all_places) %></h1>
+<div class="panel panel-default">
 
-<table id='food_places' class='table'>
-  <thead>
-    <tr>
-      <th><%= t(:name) %></th>
-      <th><%= t(:phone_number) %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @food_places.each do |food_place| %>
-      <tr>
-        <td> <%= link_to food_place.name, food_place_path(food_place) %></td>
-        <td> <%= food_place.phone_number %></td>
-        <td>  
-          <%= link_to t(:edit), edit_food_place_path(food_place) %>
-          <%= link_to t(:delete) , food_place_path(food_place), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  
+  <div class="panel-heading">
+    <div class="food_places_list_header">
+      <h1> <%= t(:all_places) %></h1>
+      <%= link_to t(:new_food_place), new_food_place_path %>
+    </div>
+  </div>
+
+  <div class="panel-body"> 
+    <div id="food_places_list" class="row">
+      <% @food_places.each do |food_place| %>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p>
+               <%= food_place.name %>
+              </p>
+              <%= image_tag food_place.photo.processed%>
+              <%= link_to t(:view), food_place_path(food_place) %>   
+            </div>  
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>   
+</div>
+<%= paginate @food_places %>    
