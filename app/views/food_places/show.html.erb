@@ -23,7 +23,7 @@
           </div>  
         </div> 
         <div class="row reubic">
-          <%= image_tag @food_place.photo.big, {class: 'img-rounded'} %>
+          <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@food_place.latitude}%2C#{@food_place.longitude}", {class: 'img-rounded'} %>
         </div> 
       </div>
       <div class="col-md-6">

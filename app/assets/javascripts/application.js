@@ -17,4 +17,7 @@
 //= require cocoon
 //= require bootstrap-filestyle
 //= require food_place
+//= bootstrap-modalmanager
+//= bootstrap-modal
+
 //= requiere_tree.

@@ -1,6 +1,8 @@
 class FoodPlacesController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
   before_action :find_place, only: [:show, :edit, :update, :destroy]
+  before_action :find_menu_options, only: [:edit, :update]
+
   
   def index
     @food_places = FoodPlace.order("name").page(params[:page]).per(6)
@@ -45,8 +47,13 @@ class FoodPlacesController < ApplicationController
   def find_place
     @food_place = FoodPlace.find(params[:id])
   end	
+
+  def find_menu_options
+    @menu_option = MenuOption.new(food_place_id: @food_place.id)
+  end
   
   def food_place_params
-    params.require(:food_place).permit(:name, :phone_number, :time, :address1, :address2, :city, :state, :photo)
+    params.require(:food_place).permit(:name, :phone_number, :time, :address1, :address2, :city, :state, :photo, :latitude, :longitude)
   end
+
 end

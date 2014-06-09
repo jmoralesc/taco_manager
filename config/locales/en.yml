@@ -60,3 +60,7 @@ en:
   location: Location
   menu: Menu
   place_new_order: Place new order!
+  sing_in: Sign in
+  sing_up: Sign up
+  password: Password
+  password_confirmation: Password confirmation

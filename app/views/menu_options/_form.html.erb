@@ -1,24 +1,24 @@
-<%= form_for [@food_place, @menu_option], html: {class: 'form-horizontal', role: 'form'} do |form| %>
+<%= form_for [@food_place, @menu_option], html: {class: 'form-horizontal', role: 'form', id: 'new_menu_option_form'} do |form| %>
   <div class='form-group'>
-    <label for='inputEmail3' class='col-sm-2 control-label'> <% t(:name) %></label>
     <div class='col-sm-10'>
       <%= form.text_field :name, placeholder: t(:name), class: 'form-control' %>
     </div>
   </div>
   <div class='form-group'>
-    <label for='inputEmail3' class='col-sm-2 control-label'> <% t(:price) %></label>
     <div class='col-sm-10'>
       <%= form.text_field :price, placeholder: t(:price), class: 'form-control' %>
     </div>
   </div>
+
   <div class='form-group'>
     <div class='col-sm-10'>
-      <%= form.file_field :photo, class: 'form-control' %>
+      <img id="preview" src="#" alt=""  class="img-rounded" />
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= form.submit "Create" , class: 'btn btn-default' %>
+
+  <div class='form-group'>
+    <div class='col-sm-10'>
+      <%= form.file_field :photo, class: 'filestyle', id: 'photo' %>
     </div>
   </div>
 <% end %>

@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-8">
+    <div id='general' class='panel panel-default'>  
+      <div class="panel-body">
+        <%= form_for @food_place, html: {class: 'form-horizontal', role: 'form', multipart: true} do |form| %>
+          <fieldset>
+            <legend><%= t(:general_information)%></legend>
+             <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :name, placeholder: t(:name), class: 'form-control' %>
+                </div>
+              </div>
+                
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <img id="preview" src="#" alt=""  class="img-rounded" />
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.file_field :photo, class: 'filestyle', dataicon: 'false', id: 'photo' %>
+                </div>
+              </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><%= t(:location)%></legend>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :phone_number, placeholder: t(:phone_number), class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :time, placeholder: t(:time), class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :address1, placeholder: t(:address1), class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :address2, placeholder: t(:address2), class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :state, placeholder: t(:state), class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-10'>
+                  <%= form.text_field :city, placeholder: t(:city), class: 'form-control' %>
+                </div>
+              </div>
+               
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <%= form.submit "Create" , class: 'btn btn-default' %>
+                </div>
+              </div>
+          </fieldset>       
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
