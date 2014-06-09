@@ -1,33 +1,37 @@
-<h1><%= @food_place.name %><h1>
-
-<div id='general' class='panel panel-default'>
-  <div class='panel-heading'>
-    <h3 class='panel-title'> <%= t(:general_information) %> </h3>
-  </div>
-  <div class='panel-body'>
-    <%= @food_place.name %>
-    <%= @food_place.phone_number %>
-    <%= @food_place.time %>
-  </div>
-</div>
-
-<div id='address' class='panel panel-default'>
-  <div class='panel-heading'>
-    <h3 class='panel-title'> <%= t(:address) %> </h3>
-  </div>
-  <div class='panel-body'>
-    <%= @food_place.address1 %>
-    <%= @food_place.address2 %>
-    <%= @food_place.state %>
-    <%= @food_place.city %>
-    <%= image_tag @food_place.photo %>
-  </div>
-</div>
-<div id='menu_option' class='panel panel-default'>
-  <div class='panel-heading'>
-    <h3 class='panel-title'> <%= t(:menu_options)  %> </h3>
-  </div>
-  <div class='panel-body'>
-<%= render partial: 'menu_option', collection: @food_place.menu_options %>
-</div>
-</div>
+<div id='general' class='panel panel-default'>   
+  <div class="panel-body">
+    <div class="page-header without-margin-top">
+      <h1><%= @food_place.name %><h1>
+    </div>
+    <%= image_tag @food_place.photo.big, {class: 'img-rounded'} %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="page-header">
+              <h1><small><%= t(:location)%></small></h1>
+            </div>
+              <p><%= @food_place.address1 %></p>
+              <p><%= @food_place.address2 %></p>
+              <%= @food_place.state %>,<%= @food_place.city %>
+          </div>
+          <div class="col-md-6" >
+            <div class="page-header">
+              <h1><small><%= t(:phone_number)%></small></h1>
+            </div>
+              <h3><%= @food_place.phone_number %></h3>
+          </div>  
+        </div> 
+        <div class="row reubic">
+          <%= image_tag @food_place.photo.big, {class: 'img-rounded'} %>
+        </div> 
+      </div>
+      <div class="col-md-6">
+        <div class="page-header">
+          <h1><small><%= t(:menu)%></small></h1>
+          <%= link_to t(:place_new_order), new_order_path, {class: 'btn btn-primary reubic-right', role: 'button'}  %>
+        </div>
+          <%= render partial: 'menu_option', collection: @food_place.menu_options %>
+      </div>
+    </div>
+  </div>  

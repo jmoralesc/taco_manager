@@ -20,10 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  actions: Actions
   sign_out: Sign out
   food_place_saved: Food place saved
   food_place_not_saved: Food place not saved
-  all_places: All places
+  food_places: Food places
   name: Name
   phone_number: Phone number
   edit: Edit
@@ -53,3 +54,9 @@ en:
   menu_line_item: Menu line item
   view: View
   new_food_place: New food place 
+  order_now: Order now >>
+  food_places: Food places
+  taco_manager: Taco Manager
+  location: Location
+  menu: Menu
+  place_new_order: Place new order!

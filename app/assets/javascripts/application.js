@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require cocoon
-//= require_tree .
+//= require bootstrap-filestyle
+//= require food_place
+//= requiere_tree.

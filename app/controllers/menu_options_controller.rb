@@ -48,7 +48,7 @@ class MenuOptionsController < ApplicationController
   end  
 
   def menu_option_params
-    params.require(:menu_option).permit(:name, :price)
+    params.require(:menu_option).permit(:name, :price, :photo)
   end
      
 end

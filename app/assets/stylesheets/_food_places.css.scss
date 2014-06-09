@@ -1,34 +1,65 @@
 @import 'bootstrap';
 #food_places_list {
-  a {
+  .reubic-left {
   	display: block;
     margin-top: 10px;
     
   }
 	
-  .col-md-2:nth-child(5n + 1) {
+  .col-md-2:nth-child(3n + 1) {
 	@extend .col-md-offset-1;
    }
 }
 
-
-
 .pagination {
   display: block;
-  text-align: center; 	
+  margin: auto;
+  text-align: center;
+ 	
 }
 
-.food_places_list_header {
+.page-header {
   overflow: hidden;
 
   a {
   	display: block;
   	float: right;
-    margin-top: 38px;
-  }
+    margin-top: 25px;
+    }
 
   h1 {
   	float: left;
   }
+}
+
+.reubic {
+  margin-top: 9px;
+}
+
+.random-food-places {
+  margin-right: 2px;
+}
+
+img{
+  display:block;
+  margin:auto;
+}
+.reubic-right{
+  margin-right: 330px;
+}
+
+
+
+.without-margin {
+  margin:0;
+  padding:0; 
+}
+
+.without-margin-top {
+  margin-top:0px;
+}
+
+.filestyle {
+  margin: auto;
 }
 

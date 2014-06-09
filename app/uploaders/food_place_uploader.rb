@@ -6,7 +6,11 @@ class FoodPlaceUploader < CarrierWave::Uploader::Base
   end  
 
   version :processed do
-    process :resize_to_fill => [135,135]
+    process :resize_to_fill => [310,170]
   end
+
+  version :big do
+    process :resize_to_fill => [500, 300]
+  end	
 
 end

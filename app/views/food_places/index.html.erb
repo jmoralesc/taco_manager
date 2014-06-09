@@ -1,29 +1,29 @@
-
 <div class="panel panel-default">
-
   <div class="panel-heading">
-    <div class="food_places_list_header">
-      <h1> <%= t(:all_places) %></h1>
-      <%= link_to t(:new_food_place), new_food_place_path %>
+    <div class="page-header without-margin">
+      <h1> <%= t(:food_places) %></h1>  
+      <%= link_to t(:new_food_place), new_food_place_path, {class: 'btn btn-primary reubic-left', role: 'button'}  %>
     </div>
   </div>
-
   <div class="panel-body"> 
     <div id="food_places_list" class="row">
       <% @food_places.each do |food_place| %>
-        <div class="col-md-2">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <p>
-               <%= food_place.name %>
-              </p>
-              <%= image_tag food_place.photo.processed%>
-              <%= link_to t(:view), food_place_path(food_place) %>   
-            </div>  
+        <div class="col-sm-2 col-md-4">
+          <div class="thumbnail"> 
+            <%= image_tag food_place.photo.processed, {class: 'img-rounded'} %>
+              <div class="caption">
+                <h4><%= food_place.name %></h4>
+                <p>...</p>
+                <p> <%= link_to t(:view), food_place_path(food_place), {class: 'btn btn-primary', role: 'button'} %> </p>
+              </div>
           </div>
-        </div>
+        </div> 
       <% end %>
     </div>
   </div>   
 </div>
-<%= paginate @food_places %>    
+
+<%= paginate @food_places %>
+
+
+

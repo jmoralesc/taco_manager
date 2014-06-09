@@ -1,3 +1,9 @@
-<%= menu_option.name %>
-<%= menu_option.price %>
- 
+ <div class="media" >
+  <a class="pull-left" href="#">
+    <%= image_tag menu_option.photo.pocket , {class: 'img-rounded'} %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading"><%= menu_option.name %> </h4>
+    <%= menu_option.price %>
+  </div>
+</div>
