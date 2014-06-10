@@ -18,6 +18,10 @@ $( document ).ready(function() {
   $("#photo").change(function(){
     readURL(this);
   });
+  
+  $(".carousel-inner .item:first").addClass("active");
+   
+  $(".indicators:first").addClass("active")
 
 });
 

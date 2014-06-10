@@ -11,6 +11,7 @@
    }
 }
 
+
 .pagination {
   display: block;
   margin: auto;
@@ -76,3 +77,26 @@ img{
 .thumbnail{
   background-color: #F5F5F5;;
 }
+
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+
+}
+
+.carousel-inner{
+  a { text-decoration: none; }
+  a:hover { color: #adff2f; }
+}
+
+.carousel-indicators .active {
+    background-color: black;
+    border: 1px solid black;
+}
+.carousel-indicators li {
+
+  border:  1px solid black;
+
+
+    }
+

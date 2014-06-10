@@ -2,9 +2,58 @@
   <div class="container">	
     <h1>Taco Manager</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum leo ut sollicitudin ullamcorper. Nullam consequat sagittis eros, sed consequat neque blandit a. Nam dignissim lacus sed mollis lacinia. Praesent ullamcorper neque quis aliquet varius. Suspendisse at felis eget justo pretium sodales nec consectetur leo. Donec dictum consectetur diam. Curabitur facilisis urna lectus, in cursus neque scelerisque ac. Aliquam rutrum sem ac dolor cursus, id faucibus sem volutpat. </p>
-    <p><a class="btn btn-primary btn-lg" role="button"><%= t(:order_now) %></a></p>
+    <p><%= link_to t(:order_now), new_order_path, {class: 'btn btn-primary btn-lg'} %></p>
   </div>  
 </div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% @trio_food_places.each_with_index do |trio_food_place, index| %>
+  <li data-target="#myCarousel" data-slide-to="<%= index%>" class="indicators"></li>
+    <% end %>
+  </ol>   
+  
+  <!-- Carousel items -->
+  <div class="carousel-inner"> 
+    
+    <% @trio_food_places.each do |trio_food_place| %>
+      <div class="item"> 
+       
+    <% trio_food_place.each do |food_place| %>
+        
+        <%= link_to food_place_path(food_place) do %>
+        <div class="col-sm-2 col-md-4">
+          <div class="thumbnail"> 
+            <%= image_tag food_place.photo.processed, {class: 'img-rounded'} %>
+              <div class="caption">
+                <h4><%= food_place.name %></h4>
+                <p>...</p>
+              </div>
+          </div>
+        </div> 
+        <% end %>
+        <div class="carousel-caption">
+          <h3>Second slide label</h3>
+          <p>Aliquam sit amet gravida nibh, facilisis gravida…</p>
+        </div>
+       <% end %>
+      </div> 
+
+    <% end %>
+
+  </div>  
+
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+
 
 <div class="random-food-places">
   <% @random_food_places.each do |random_food_place| %>
@@ -20,4 +69,6 @@
     </div> 
   <% end %>
 </div>
+
+
  
