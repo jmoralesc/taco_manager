@@ -33,7 +33,7 @@ namespace :db do
     
     FoodPlace.all.each do |food_place|
       10.times do
-        print "hola"  
+        
         menu_option = MenuOption.new
         menu_option.food_place_id = food_place.id
         menu_option.photo = File.open(Dir.glob(File.join(Rails.root, 'Images/Options', '*')).sample)
