@@ -2,7 +2,7 @@ namespace :db do
    desc "Testing populator"
    task :seed => :environment do
     require 'faker'
-    require 'populator'
+
 
     User.destroy_all
       user = User.new(
