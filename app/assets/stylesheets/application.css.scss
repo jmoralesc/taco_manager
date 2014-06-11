@@ -11,7 +11,9 @@
  * file per style scope.
  *
  *= require_self
+ *= require chosen
  */
  
  @import 'bootstrap';
+ @import 'chosen';
  @import 'food_places';

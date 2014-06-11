@@ -12,12 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require chosen-jquery
 //= require bootstrap
 //= require cocoon
 //= require bootstrap-filestyle
 //= require food_place
 //= bootstrap-modalmanager
-//= bootstrap-modal
-
 //= requiere_tree.

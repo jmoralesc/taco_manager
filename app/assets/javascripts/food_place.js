@@ -23,6 +23,12 @@ $( document ).ready(function() {
    
   $(".indicators:first").addClass("active")
 
+  $(".chosen").chosen({no_results_text: "Oops, nothing found!"});
+
+  //$("#order_food_place_id").prepend("<option></option>");
+  //$("#select-r").prepend("<option value='' selected='selected'>Choose food place</option>");
+  //​$("<option>", { value: '', selected: true }).prependTo(".chosen");​​​​​​​​​​​
+
 });
 
 
