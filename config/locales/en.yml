@@ -65,3 +65,5 @@ en:
   password: Password
   password_confirmation: Password confirmation
   choose_restaurant: Choose food place
+  subtotal: Subtotal
+  order_details: Order details

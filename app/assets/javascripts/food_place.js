@@ -24,10 +24,61 @@ $( document ).ready(function() {
   $(".indicators:first").addClass("active")
 
   $(".chosen").chosen({no_results_text: "Oops, nothing found!"});
+   
 
-  //$("#order_food_place_id").prepend("<option></option>");
-  //$("#select-r").prepend("<option value='' selected='selected'>Choose food place</option>");
-  //​$("<option>", { value: '', selected: true }).prependTo(".chosen");​​​​​​​​​​​
+
+var classHighlight = 'highlight'; 
+
+
+
+   $(".thumbnail").on("mouseenter", function (){
+     $(this).addClass(classHighlight);
+   });
+   
+   $(".thumbnail").on("mouseleave", function (){
+     $(this).removeClass(classHighlight);
+   });
+
+   //$( ".rtrio:nth-child(3n + 1)" ).append("<div id='trio1'/>")
+  
+  $(document).bind('cocoon:after-insert', function(e,inserted_item) {
+     $(".chosen").chosen({no_results_text: "Oops, nothing found!"});
+
+    $(".select").on('change',function() {
+      price = $(this).find(":selected").data('price');
+      $(this).parent().parent().find("#price").val(price);
+      quantity = $(this).parent().parent().find(".quantity").val();
+      $(this).parent().parent().parent().parent().find(".subtotal").val((price * quantity).toFixed(1));     
+      //$(this).parent().find("#price").val(price);
+    });
+
+    $(".quantity").on('change',function() {
+       price = $(this).parent().parent().parent().find("#price").val();
+       quantity = $(this).val();
+       $(this).parent().parent().parent().find(".subtotal").val((price * quantity).toFixed(1)); 
+     });  
+   });
+  
+    price = $(".select").find(":selected").data('price');
+    $(this).find("#price").val(price);
+  
+  
+  
+
+  
+  $(".select").on('change',function() {
+    price = $(this).find(":selected").data('price');
+    $(this).parent().parent().find("#price").val(price);
+    quantity = $(this).parent().parent().find(".quantity").val();
+    $(this).parent().parent().parent().find(".subtotal").val((price * quantity).toFixed(1));
+  });
+
+   $(".quantity").on('change',function() {
+    price = $(this).parent().parent().parent().find("#price").val();
+    quantity = $(this).val();
+    $(this).parent().parent().parent().find(".subtotal").val((price * quantity).toFixed(1));
+  });
+
 
 });
 

@@ -52,23 +52,4 @@
   </a>
 
 </div>
-
-
-
-<div class="random-food-places">
-  <% @random_food_places.each do |random_food_place| %>
-    <div class="col-sm-2 col-md-4">
-      <div class="thumbnail"> 
-        <%= image_tag random_food_place.photo.processed, {class: 'img-rounded'} %>
-          <div class="caption">
-            <h4><%= random_food_place.name %></h4>
-              <p>...</p>
-              <p> <%= link_to t(:view), food_place_path(random_food_place), {class: 'btn btn-primary', role: 'button'} %> </p>
-          </div>
-      </div>
-    </div> 
-  <% end %>
-</div>
-
-
  

@@ -7,7 +7,7 @@
   }
 	
   .col-md-2:nth-child(3n + 1) {
-	@extend .col-md-offset-1;
+	  @extend .col-md-offset-1;
    }
 }
 
@@ -74,10 +74,24 @@ img{
   float: none;
   margin: 0 auto;
 }
+
+.col-sm-4 {
+  
+ display: block;
+  float: none;
+  margin: 0 auto;
+}
+
 .thumbnail{
   background-color: #F5F5F5;;
 }
 
+
+.highlight {
+    border-color: gray;
+    font-weight: bold;
+     
+}
 
 .carousel-control.left, .carousel-control.right {
     background-image: none
@@ -96,7 +110,8 @@ img{
 .carousel-indicators li {
 
   border:  1px solid black;
-
-
     }
 
+.close {
+  float:right;
+}

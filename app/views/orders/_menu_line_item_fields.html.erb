@@ -2,14 +2,34 @@
   <div class="field col-sm-10"> 
     <div id='menu_option' class='panel panel-default'>
       <div class='panel-heading'>
-        <h3 class='panel-title'> <%= t(:menu_line_item) %> </h3>
-      </div>
-      <div class='panel-body'>
-        <%= f.select :menu_option_id, @menu_options.map {|option| [option.name, option.id]}, class: 'form-control' %>   
-        <%= f.number_field :quantiy, placeholder: t(:quantity), class: 'form-control' %>
-        <%= link_to_remove_association f , {:class => 'btn btn-link"'} do %>
+        <%= f.select :menu_option_id, @menu_options.map {|option| [option.name, option.id, {'data-price'=> option.price}]}, {} ,{class: 'select chosen'} %>    
+    
+        <%= link_to_remove_association f , {:class => 'close'} do %>
          <span class="glyphicon glyphicon-remove"></span>
-        <% end %> 
+        <% end %>
+      </div>
+
+      <div class='panel-body'>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input class="form-control" id="price" type="text" placeholder="Price" disabled value= "<%= f.object.menu_option.price if f.object.menu_option %>">
+          </div> 
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">      
+            <%= f.number_field :quantiy, placeholder: t(:quantity), class: 'form-control quantity' %> 
+          </div> 
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <fieldset>
+              <legend><%= t(:subtotal)%></legend>
+                 <%= f.text_field :subtotal, placeholder: t(:subtotal),disabled: '', value: number_with_precision(f.object.subtotal, precision: 1),class: 'form-control subtotal' %>
+
+             </fieldset>
+
+          </div> 
+        </div>    
       </div>
     </div>  
   </div>
