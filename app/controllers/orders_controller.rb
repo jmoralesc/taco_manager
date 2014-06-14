@@ -38,7 +38,6 @@ class OrdersController < ApplicationController
         subtotal = menu_line_item.menu_option.price * menu_line_item.quantiy
         menu_line_item.update_attributes(:subtotal => subtotal)
         menu_line_item.update_attributes(:user_id => current_user.id)
-        binding.pry
       end
 
   	  redirect_to edit_order_path(@order) 
