@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
   
   before_action :find_order, only: [:show, :edit, :update, :destroy]
-  before_action :find_menu_line_items, only: [:show, :edit, :update]
+  before_action :find_users, only: [:new]
   before_action :find_food_places, only: [:new, :edit]
   before_action :find_food_place, only: [:edit]
   before_action :find_menu_options, only: [:edit]
@@ -22,7 +22,9 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(order_params)
       if @order.save 
         flash[:success] = t(:order_saved)
-       redirect_to edit_order_path(@order) 
+       redirect_to edit_order_path(@order)
+       @a = User.find(params[:invitedu][:id])
+       binding.pry 
       else
         flash[:error] = t(:order_not_saved)
         render :new	
@@ -69,10 +71,10 @@ class OrdersController < ApplicationController
   def find_menu_options
     @menu_options = @food_place.menu_options
   end
-
-  def find_menu_line_items
-    @menu_line_items = @order.menu_line_items
-  end
+  
+  def find_users
+    @users = User.all
+  end  
   
   def order_params
     params.require(:order).permit(:food_place_id, menu_line_items_attributes: [:id, :menu_option_id, :quantiy, :_destroy])

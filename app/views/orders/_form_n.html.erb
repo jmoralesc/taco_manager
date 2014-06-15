@@ -1,61 +1,54 @@
 <%= form_for @order, html: {class: 'form-horizontal', role: 'form'} do |form| %>
-  
-    <div class="col-sm-10">
-      <div id='general' class='panel panel-default'>  
-        <div class="panel-body">
-           <div class='form-group'>
-              <div class='col-sm-10'>
-                <%= form.select :food_place_id, @food_places.map {|place| [place.name, place.id]},{} , {class: 'form-control chosen', data: {placeholder: 'Choose food place'}} %>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-10">
-                <% if @menu_options %> 
-                  <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
+  <div class="col-sm-10">
+    <div id='general' class='panel panel-default'>  
+      <div class="panel-body">
+        <div class='form-group'>
+          <div class='col-sm-10'>
+            <%= form.select :food_place_id, @food_places.map {|place| [place.name, place.id]},{} , {class: 'form-control chosen', data: {placeholder: 'Choose food place'}} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <% if @menu_options %> 
+              <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
                     <%= render 'menu_line_item_fields', f: menu_line_item %> 
-                  <% end %>
-                  <div class="col-sm-10">
-                    <%= link_to_add_association form, :menu_line_items , {:class => 'btn btn-link'} do%>
-                      <span class="glyphicon glyphicon-plus"></span>
-                    <% end %>
-                </div>
+              <% end %>
+              <div class="col-sm-10">
+                <%= link_to_add_association form, :menu_line_items , {:class => 'btn btn-link'} do%>
+                  <span class="glyphicon glyphicon-plus"></span>
                 <% end %>
               </div>
-            </div> 
-            <div class='form-group'>
-              <div class='col-sm-10'>
-                <%= form.submit "Submit" , class: 'btn btn-default' %>
-              </div>
-            </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="field col-sm-6">
+    <div class='panel panel-default'>  
+      <div class="panel-body">
+        <fieldset>
+          <legend><%=t(:invite_friends) %></legend>
+          <table class="table table-striped table-bordered">  
+            <tr>
+            </tr> 
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= check_box_tag 'invitedu[id][]', user.id, false %></td>
+                <td><%= user.username%></td>
+              </tr>
+            <% end %>
+          </table>
+        </fieldset> 
+      </div>
+    </div>    
+  </div> 
+
+
+        <div class='form-group'>
+          <div class='col-sm-10'>
+            <%= form.submit "Submit" , class: 'btn btn-default' %>
+          </div>
         </div>
       </div>
     </div>
-    <div class="field col-sm-10">
-      <div class='panel panel-default'>  
-        <div class="panel-body">
-          <fieldset>
-            <legend><%=t(:order_details) %></legend>
-            <table class="table table-striped table-bordered">  
-              <tr>
-                <th><%=t(:user) %></th>
-                <th><%=t(:menu_option) %></th>
-                <th><%= t(:price) %></th>
-                <th><%=t(:quantity) %></th>
-                <th><%=t(:subtotal) %></th>
-              </tr> 
-              <% @order.menu_line_items.each do |menu_line_item| %>
-                <tr>
-                  <td><%= menu_line_item.user.username %></td>
-                  <td><%= menu_line_item.menu_option.name%></td>
-                  <td><%= menu_line_item.menu_option.price%></td>
-                  <td><%= menu_line_item.quantiy%></td>
-                  <td><%= menu_line_item.subtotal %></td>
-                </tr>
-              <% end %>
-          </table>
-        </div>
-      </div>    
-    </div>  
   </div>  
-  
 <% end %>
