@@ -55,7 +55,7 @@ en:
   view: View
   new_food_place: New food place 
   order_now: Order now >>
-  food_places: Food places
+  food_place: Food place
   taco_manager: Taco Manager
   location: Location
   menu: Menu
@@ -70,3 +70,6 @@ en:
   invite_friends: Invite friends
   all: All
   my_orders: My orders
+  date: Date
+  total: Total
+  status: Status

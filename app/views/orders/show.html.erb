@@ -1,1 +1,27 @@
-tgbdhyb
+<div class="field col-md-6">
+      <div class='panel panel-default'>  
+        <div class="panel-body">
+          <fieldset>
+            <legend><%=t(:order_details) %></legend>
+            <table class="table table-striped table-bordered">  
+              <tr>
+                <th><%=t(:user) %></th>
+                <th><%=t(:menu_option) %></th>
+                <th><%=t(:quantity) %></th>
+                <th><%=t(:subtotal) %></th> 
+                <th><%=t(:payed) %></th>
+              </tr> 
+              <% @order.menu_line_items.each do |menu_line_item| %>
+                  <tr>
+                    <td><%= menu_line_item.user.username %></td>
+                    <td><%= menu_line_item.menu_option.name %></td>
+                    <td><%= menu_line_item.quantiy %></td>
+                    <td><%= menu_line_item.subtotal %></td>
+                    <td><%= check_box_tag "payed",{class: 'align-center'},false %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </fieldset>
+        </div>
+      </div>    
+    </div>  
