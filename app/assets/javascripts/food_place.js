@@ -78,6 +78,16 @@ var classHighlight = 'highlight';
     quantity = $(this).val();
     $(this).parent().parent().parent().find(".subtotal").val((price * quantity).toFixed(1));
   });
+  
+  $("#All").on('change',function() {
+    all = $(this).parent().parent().parent().find("input[id*='invitedu_id_']")
+  if ($(this).prop('checked')){
+    all.prop('checked', true);
+  }else{ 
+    all.prop('checked', false);
+  }
+
+});
 
 
 });

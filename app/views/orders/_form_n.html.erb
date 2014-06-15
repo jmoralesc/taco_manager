@@ -29,6 +29,8 @@
           <legend><%=t(:invite_friends) %></legend>
           <table class="table table-striped table-bordered">  
             <tr>
+              <td><%= check_box_tag "All", false %></td>
+              <td><%= t(:all) %></td>
             </tr> 
             <% @users.each do |user| %>
               <tr>
