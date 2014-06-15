@@ -1,0 +1,23 @@
+<div class="field col-md-6">
+      <div class='panel panel-default'>  
+        <div class="panel-body">
+          <fieldset>
+            <legend><%=t(:order_details) %></legend>
+            <table class="table table-striped table-bordered">  
+              <tr>
+                <th><%=t(:user) %></th>
+                <th><%=t(:menu_option) %></th>
+                <th><%=t(:subtotal) %></th>
+              </tr> 
+              <% @current_user_orders.each do |order| %>
+                <tr>
+                  <td><%= order.user.username %></td>
+                  <td><%= order.id %></td>
+                  <td><%= order.total %></td>
+                </tr>
+              <% end %>
+            </table>
+          </fieldset>
+        </div>
+      </div>    
+    </div>  

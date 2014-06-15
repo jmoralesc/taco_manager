@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :authenticate_user!, except: [:show]
   
   before_action :find_order, only: [:show, :edit, :update, :destroy]
   before_action :find_users, only: [:new]
@@ -8,8 +8,9 @@ class OrdersController < ApplicationController
   before_action :find_menu_options, only: [:edit]
 
 
+
   def index
-  	@orders = Order.all
+  	@current_user_orders = Order.where(:user_id => current_user.id)
   end
   
   def show; end
@@ -24,7 +25,6 @@ class OrdersController < ApplicationController
         flash[:success] = t(:order_saved)
        redirect_to edit_order_path(@order)
        @a = User.find(params[:invitedu][:id])
-       binding.pry 
       else
         flash[:error] = t(:order_not_saved)
         render :new	
@@ -36,12 +36,16 @@ class OrdersController < ApplicationController
   def update
   	if @order.update_attributes(order_params)
   	  flash[:success] = t(:order_saved)
+      total = 0
       @order.menu_line_items.each do |menu_line_item|
-        subtotal = menu_line_item.menu_option.price * menu_line_item.quantiy
-        menu_line_item.update_attributes(:subtotal => subtotal)
-        menu_line_item.update_attributes(:user_id => current_user.id)
+        unless menu_line_item.user
+          subtotal = menu_line_item.menu_option.price * menu_line_item.quantiy
+          menu_line_item.update_attributes(:subtotal => subtotal)
+          menu_line_item.update_attributes(:user_id => current_user.id)
+        end
+        total += menu_line_item.subtotal
       end
-
+      @order.update_attributes(:total => total)
   	  redirect_to edit_order_path(@order) 
   	else
   	  flash[:error] = t(:order_not_saved)
@@ -74,7 +78,7 @@ class OrdersController < ApplicationController
   
   def find_users
     @users = User.all
-  end  
+  end 
   
   def order_params
     params.require(:order).permit(:food_place_id, menu_line_items_attributes: [:id, :menu_option_id, :quantiy, :_destroy])

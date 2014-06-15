@@ -12,7 +12,9 @@
               <div class="col-sm-10">
                 <% if @menu_options %> 
                   <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
-                    <%= render 'menu_line_item_fields', f: menu_line_item %> 
+                    <% if menu_line_item.object.user.id == current_user.id %>
+                      <%= render 'menu_line_item_fields', f: menu_line_item %>
+                    <% end %>   
                   <% end %>
                   <div class="col-sm-10">
                     <%= link_to_add_association form, :menu_line_items , {:class => 'btn btn-link'} do%>
@@ -52,7 +54,8 @@
                   <td><%= menu_line_item.subtotal %></td>
                 </tr>
               <% end %>
-          </table>
+            </table>
+          </fieldset>
         </div>
       </div>    
     </div>  
