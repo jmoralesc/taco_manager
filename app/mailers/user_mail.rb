@@ -1,6 +1,6 @@
 class UserMail < ActionMailer::Base
   default from: 'julian.morales@crowdint.com'
-  default_url_options[:host] = 'heroku.com'
+  default_url_options[:host] = 'my-taco-manager.herokuapp.com'
 
   def invitation(user, order)
     @user = user 
