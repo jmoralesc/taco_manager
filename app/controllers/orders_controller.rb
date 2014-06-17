@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       redirect_to edit_order_path(@order)
       @a = User.find(params[:invitedu][:id])
       @a.each do |user|
-         UserMail.invitation(user).deliver
+         UserMail.invitation(user, @order).deliver
       end  
       else
         flash[:error] = t(:order_not_saved)
