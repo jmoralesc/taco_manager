@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
       redirect_to edit_order_path(@order)
       @a = User.find(params[:invitedu][:id])
       @a.each do |user|
-         binding.pry
          UserMail.invitation(user).deliver
       end  
       else
