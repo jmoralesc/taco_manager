@@ -1,14 +1,15 @@
+# Controller for Food places' management
 class FoodPlacesController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :find_place, only: [:show, :edit, :update, :destroy]
   before_action :find_menu_options, only: [:edit, :update]
 
-  
   def index
-    @food_places = FoodPlace.order("name").page(params[:page]).per(6)
+    @food_places = FoodPlace.order('name').page(params[:page]).per(6)
   end
-  
-  def show; end
+
+  def show
+  end
 
   def new
     @food_place = FoodPlace.new
@@ -16,44 +17,47 @@ class FoodPlacesController < ApplicationController
 
   def create
     @food_place = current_user.food_places.build(food_place_params)
-      if @food_place.save 
-        flash[:success] = t(:food_place_saved)
-        redirect_to food_place_path(@food_place)
+    if @food_place.save
+      flash[:success] = t(:food_place_saved)
+      redirect_to food_place_path(@food_place)
       else
         flash[:error] = t(:food_place_not_saved)
-        render :new	
-      end
+        render :new
+    end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
-  	if @food_place.update_attributes(food_place_params)
-  	  flash[:success] = t(:food_place_saved)
-  	  redirect_to food_place_path(@food_place)
-  	else
-  	  flash[:error] = t(:food_place_not_saved)
-  	  render :edit
-  	end	
+    if @food_place.update_attributes(food_place_params)
+      flash[:success] = t(:food_place_saved)
+      redirect_to food_place_path(@food_place)
+      else
+        flash[:error] = t(:food_place_not_saved)
+        render :edit
+    end
   end
 
   def destroy
-  	@food_place.destroy
-  	redirect_to food_places_path
+    @food_place.destroy
+    redirect_to food_places_path
   end
 
   private
 
   def find_place
     @food_place = FoodPlace.find(params[:id])
-  end	
+  end
 
   def find_menu_options
     @menu_option = MenuOption.new(food_place_id: @food_place.id)
   end
-  
-  def food_place_params
-    params.require(:food_place).permit(:name, :phone_number, :time, :address1, :address2, :city, :state, :photo, :latitude, :longitude)
-  end
 
+  def food_place_params
+    params.require(:food_place).permit(
+      :name, :phone_number, :time, :address1, :address2,
+      :city, :state, :photo, :latitude, :longitude
+    )
+  end
 end

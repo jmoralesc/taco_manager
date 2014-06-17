@@ -63,9 +63,6 @@ var classHighlight = 'highlight';
     $(this).find("#price").val(price);
   
   
-  
-
-  
   $(".select").on('change',function() {
     price = $(this).find(":selected").data('price');
     $(this).parent().parent().find("#price").val(price);
@@ -86,8 +83,24 @@ var classHighlight = 'highlight';
   }else{ 
     all.prop('checked', false);
   }
+  });
 
-});
+  $(".payed").on('change',function() {
+
+    pay = $(this).parent().parent().parent().find(".pay")
+    pay.submit();
+
+   });
+
+  
+  $('.user').on("mouseenter", function (){
+   $(this).popover('show');
+   });
+   
+   $('.user').on("mouseleave", function (){
+   $(this).popover('hide');
+   
+   });
 
 
 });

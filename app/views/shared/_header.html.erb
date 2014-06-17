@@ -15,10 +15,10 @@
       <div class='navbar-right'> 
         <ul class='nav navbar-nav'>
           <li class="reubic">
-            <%= image_tag current_user.avatar.avatar %>
+           <%= image_tag current_user.avatar.avatar , {class: 'img-circle'} %>
           </li>
           <li>
-            <%= link_to current_user.email, edit_user_registration_path %>
+            <%= link_to current_user.username, edit_user_registration_path %>
           </li>
           <li>
             <%= link_to t(:sign_out), destroy_user_session_path, method: :delete %>

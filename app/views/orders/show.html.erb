@@ -1,27 +1,66 @@
-<div class="field col-md-6">
-      <div class='panel panel-default'>  
-        <div class="panel-body">
-          <fieldset>
-            <legend><%=t(:order_details) %></legend>
-            <table class="table table-striped table-bordered">  
-              <tr>
-                <th><%=t(:user) %></th>
-                <th><%=t(:menu_option) %></th>
-                <th><%=t(:quantity) %></th>
-                <th><%=t(:subtotal) %></th> 
-                <th><%=t(:payed) %></th>
-              </tr> 
-              <% @order.menu_line_items.each do |menu_line_item| %>
-                  <tr>
-                    <td><%= menu_line_item.user.username %></td>
-                    <td><%= menu_line_item.menu_option.name %></td>
-                    <td><%= menu_line_item.quantiy %></td>
-                    <td><%= menu_line_item.subtotal %></td>
-                    <td><%= check_box_tag "payed",{class: 'align-center'},false %></td>
-                  </tr>
-              <% end %>
-            </table>
-          </fieldset>
+<%= form_for @order, html: {class: 'form-horizontal', role: 'form'} do |form| %>
+  <div class="field col-md-6">
+    <div class='panel panel-default'>  
+      <div class="panel-body">
+        <div class="page-header without-margin-top">
+          <h1><small><%= t(:order_details)%></small></h1>
         </div>
-      </div>    
-    </div>  
+        
+</button>
+        <table class="table table-striped table-bordered">  
+          <tr>
+            <th><%=t(:user) %></th>
+            <th><%=t(:menu_option) %></th>
+            <th><%=t(:quantity) %></th>
+            <th><%=t(:subtotal) %></th> 
+            <th><%=t(:payed) %></th>
+          </tr> 
+          <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal pay', role: 'form'} do |menu_line_item| %>
+            <tr>
+              <td><%= menu_line_item.object.user.username %></td>
+              <td><%= menu_line_item.object.menu_option.name %></td>
+              <td><%= menu_line_item.object.quantiy %></td>
+              <td><%= menu_line_item.object.subtotal %></td>
+              <td><%= menu_line_item.check_box :payed , {class: 'align-center payed'}%></td>
+            </tr>
+          <% end %>
+        </table>
+        
+      </div>
+    </div>    
+  </div>
+<% end %>   
+<div class="field col-md-6">
+  <div class='panel panel-default'>  
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="page-header without-margin-top">
+            <h1><small><%= t(:food_place)%></small></h1>
+          </div>
+          <%= link_to food_place_path(@food_place) , {class:'a-no-decoration'} do %>
+            <div class="thumbnail"> 
+              <%= image_tag @food_place.photo.processed, {class: 'img-rounded'} %>
+              <div class="caption">
+                <h4><%= @food_place.name %></h4>
+                <p>...</p>
+              </div>
+            </div> 
+          <% end %>
+        </div>
+        <div class="col-md-6" >
+          <div class="page-header without-margin-top">
+            <h1><small><%= t(:users)%></small></h1>
+          </div>
+          <div class= "row">
+          <% @order_users.each do |user| %>
+            <div class=".col-md-2 col-md-4 reubic">
+             <%= image_tag user.avatar.avatar_m, {class: 'img-circle user', data: { container: 'body', toggle: 'popover', placement: @positions.sample, content: user.username + ': ' + @count_lines[user].to_s + ' line items'}} %>
+            </div> 
+          <% end %>
+        </div>
+        </div>  
+      </div> 
+    </div>
+  </div>
+</div>

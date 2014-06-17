@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.1'
-
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'cancan'
 gem 'carrierwave'
 gem 'cocoon'
 gem 'coffee-rails', '~> 4.0.0'
@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'sqlite3'
   gem 'pry-rails'
+  gem 'rubocop', require: false
 end
 
 group :production do

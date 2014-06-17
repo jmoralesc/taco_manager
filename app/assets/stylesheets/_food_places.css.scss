@@ -108,6 +108,10 @@ img{
   a:hover { color: #adff2f; }
 }
 
+.a-no-decoration{
+  a { text-decoration: none; }
+  .a-no-decoration:hover { color: #adff2f;text-decoration: none; }
+}
 .carousel-indicators .active {
     background-color: black;
     border: 1px solid black;

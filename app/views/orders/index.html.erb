@@ -10,7 +10,7 @@
                 <th><%=t(:total) %></th> 
                 <th><%=t(:status) %></th>
               </tr> 
-              <% @current_user_orders.each do |order| %>
+              <% @orders.each do |order| %>
                   <tr>
                     <td><%= order.food_place.name %></td>
                     <td><%= order.created_at.to_date.to_formatted_s(:long_ordinal)%></td>
