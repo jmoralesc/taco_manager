@@ -76,10 +76,10 @@ class User < ActiveRecord::Base
         user = User.create(username:auth.extra.raw_info.name,    
                             provider:auth.provider,
                             uid:auth.uid,
+                            remote_avatar_url: auth.extra.raw_info.avatar_url, 
                             email:auth.uid+"@twitter.com",
                             password:Devise.friendly_token[0,20],
                           )
-        user.remote_avatar_url = auth.extra.raw_info.avatar_url
       end
 
     end
