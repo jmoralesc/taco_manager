@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
 
-  devise :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin]
+  devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   mount_uploader :avatar, UserAvatarUploader
 
@@ -72,12 +72,10 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        avatar_url = process_uri(auth.extra.raw_info.avatar_url)
-        user.remote_avatar_url = avatar_url
         user = User.create(username:auth.extra.raw_info.name,    
                             provider:auth.provider,
                             uid:auth.uid,
-                            remote_avatar_url: avatar_url, 
+                            remote_avatar_url:auth.extra.raw_info.profile_image_url, 
                             email:auth.uid+"@twitter.com",
                             password:Devise.friendly_token[0,20],
                           )
@@ -85,27 +83,6 @@ class User < ActiveRecord::Base
 
     end
   end
-
-  def self.connect_to_linkedin(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    if user
-      return user
-    else
-      registered_user = User.where(:email => auth.info.email).first
-      if registered_user
-        return registered_user
-      else
-
-        user = User.create(username:auth.info.first_name,
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20],
-                          )
-      end
-
-    end
-  end   
 
   private
 
