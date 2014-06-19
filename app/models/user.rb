@@ -73,12 +73,14 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
-        user = User.create(username:auth.extra.raw_info.name,
+        user = User.create(username:auth.extra.raw_info.name,    
                             provider:auth.provider,
                             uid:auth.uid,
                             email:auth.uid+"@twitter.com",
                             password:Devise.friendly_token[0,20],
                           )
+        avatar_url = process_uri(auth.extra.raw_info.avatar_url)
+        user.remote_avatar_url = avatar_url
       end
 
     end
