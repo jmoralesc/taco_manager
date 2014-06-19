@@ -1,3 +1,0 @@
-class MenuLineItemController < ApplicationController
-   
-end
