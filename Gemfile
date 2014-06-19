@@ -20,6 +20,7 @@ gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'mini_magick'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'open_uri_redirections'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development

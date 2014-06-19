@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616155340) do
+ActiveRecord::Schema.define(version: 20140618163008) do
 
   create_table "food_places", force: true do |t|
     t.string   "name"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20140616155340) do
     t.datetime "updated_at"
     t.string   "avatar"
     t.string   "username"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

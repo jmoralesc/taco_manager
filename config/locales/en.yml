@@ -73,3 +73,11 @@ en:
   date: Date
   total: Total
   status: Status
+  login: Login   
+  username: Username
+  email: Email
+  send_me_reset_password_instructions: Send me reset password instructions
+  forgot_your_password: Forgot your password?
+  current_password: Current password
+  unhappy: Unhappy?
+  resend_confirmation_instructions: Resend confirmation instructions

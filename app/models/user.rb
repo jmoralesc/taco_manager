@@ -4,13 +4,17 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :menu_line_items
   has_many :roles, through: :user_role
+ 
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
 
+  devise :omniauthable, :omniauth_providers => [:facebook]
+
   mount_uploader :avatar, UserAvatarUploader
 
+ 
   # roles = [:user]
 
   def is?(requested_role)
@@ -18,6 +22,35 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :login
+
+  def apply_omniauth(omni)
+   authentications.build(:provider => omni['provider'],
+   :uid => omni['uid'],
+   :token => omni['credentials'].token,
+   :token_secret => omni['credentials'].secret)
+    session[:omniauth] = omni.except('extra')
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+      else
+       super
+    end
+  end
+
+  def self.find_for_facebook_oauth(auth)
+  where(auth.slice(:provider, :uid)).first_or_create do |user|
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.username = auth.info.name
+    avatar_url = process_uri(auth.info.image)
+    user.remote_avatar_url = avatar_url
+    binding.pry
+  end
+ end
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -30,4 +63,12 @@ class User < ActiveRecord::Base
         where(conditions).first
     end
   end
+
+  private
+
+ def self.process_uri(uri)
+   avatar_url = URI.parse(uri)
+   avatar_url.scheme = 'https'
+   avatar_url.to_s
+end
 end
