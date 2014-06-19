@@ -13,8 +13,6 @@ def facebook
   end
 def twitter
     auth = env["omniauth.auth"]
-binding.pry
-
     @user = User.find_for_twitter_oauth(request.env["omniauth.auth"],current_user)
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
@@ -26,7 +24,6 @@ binding.pry
   end
 
   def linkedin
-    binding.pry
     auth = env["omniauth.auth"]
     @user = User.connect_to_linkedin(request.env["omniauth.auth"],current_user)
     if @user.persisted?

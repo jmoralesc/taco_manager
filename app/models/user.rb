@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   def apply_omniauth(omni)
-    binding.pry
    authentications.build(:provider => omni['provider'],
    :uid => omni['uid'],
    :token => omni['credentials'].token,
@@ -49,7 +48,6 @@ class User < ActiveRecord::Base
     user.username = auth.info.name
     avatar_url = process_uri(auth.info.image)
     user.remote_avatar_url = avatar_url
-    binding.pry
   end
  end
 
@@ -87,7 +85,6 @@ class User < ActiveRecord::Base
   end
 
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
-    binding.pry
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
       return user
