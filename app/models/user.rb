@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
-        user = User.create(name:auth.extra.raw_info.name,
+        user = User.create(username:auth.extra.raw_info.name,
                             provider:auth.provider,
                             uid:auth.uid,
                             email:auth.uid+"@twitter.com",
@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
         return registered_user
       else
 
-        user = User.create(name:auth.info.first_name,
+        user = User.create(username:auth.info.first_name,
                             provider:auth.provider,
                             uid:auth.uid,
                             email:auth.info.email,
