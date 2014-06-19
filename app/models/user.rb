@@ -79,8 +79,7 @@ class User < ActiveRecord::Base
                             email:auth.uid+"@twitter.com",
                             password:Devise.friendly_token[0,20],
                           )
-        avatar_url = process_uri(auth.extra.raw_info.avatar_url)
-        user.remote_avatar_url = avatar_url
+        user.remote_avatar_url = auth.extra.raw_info.avatar_url
       end
 
     end
