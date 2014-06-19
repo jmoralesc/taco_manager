@@ -26,6 +26,7 @@
         </ul>
       </div>
     <% else %>    
+  
       <%= form_tag(user_session_path, method: :post, class: 'navbar-form navbar-right', role: 'form' ) do %>
         <div class="form-group">
           <%= text_field_tag 'user[login]', '', placeholder: 'Login', class: 'form-control' %>
@@ -33,8 +34,15 @@
         <div class="form-group">
           <%= password_field_tag 'user[password]' ,'', placeholder: 'Password', class: 'form-control' %>
         </div>
-        <button type="submit" class="btn btn-success">Sign in</button>    
+        <button type="submit" class="btn btn-success">Sign in</button>  
+        <%- if devise_mapping.omniauthable? %>
+      <%- Devise.omniauth_providers.each do |provider| %>
+       <%= link_to image_tag("#{provider.to_s.titleize}.png", :border => 0, :width => 30, :height => 30),omniauth_authorize_path(resource_name, provider)  %>
+      <% end -%>
+    <% end -%>  
       <% end %>
     <% end %>
+
+    
   </div>
 </nav>

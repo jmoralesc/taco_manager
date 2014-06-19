@@ -5,4 +5,5 @@ class HomeController < ApplicationController
     @food_places = FoodPlace.all
     @trio_food_places = FoodPlace.all.each_slice(3).to_a
   end
+
 end
