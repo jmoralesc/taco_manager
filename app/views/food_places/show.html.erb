@@ -29,9 +29,8 @@
               <div class="page-header">
               <h1><small><%= t(:rating)%></small></h1>
             </div>
-             
             <%= form_for @food_place, html: {class: 'form-horizontal', role: 'form', multipart: true} do |form| %>
-              <%= content_tag(:div,nil ,class: 'eval', data: { score: '#{food_place.rating}'}) %>
+              <%= content_tag(:div,nil ,class: 'eval', data: { score: "#{@food_place.rating}"}) %>
               <%= form.hidden_field :stars, class: 'form-control count-stars'  %>
             <% end %>
           </div>

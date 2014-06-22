@@ -30,8 +30,15 @@ class FoodPlacesController < ApplicationController
   end
 
   def update
-    binding.pry
-    if @food_place.update_attributes(food_place_params)
+    
+    if food_place_params[:stars] 
+      stars = food_place_params[:stars].to_i + @food_place.stars
+      @food_place.update_attributes(stars: stars)
+      @food_place.update_attributes(times_rated: @food_place.times_rated + 1)
+      @food_place.update_attributes(rating: @food_place.stars/ @food_place.times_rated)
+      redirect_to food_place_path(@food_place)
+    elsif @food_place.update_attributes(food_place_params)
+      binding.pry
       flash[:success] = t(:food_place_saved)
       redirect_to food_place_path(@food_place)
       else

@@ -14,7 +14,7 @@
               <%= image_tag food_place.photo.processed, {class: 'img-rounded'} %>
                 <div class="caption">
                   <h4><%= food_place.name %></h4>
-                  <%= content_tag(:div,nil ,class: 'stars', data: { score: '#{food_place.rating}'}) %>
+                  <%= content_tag(:div,nil ,class: 'stars', data: { score: "#{food_place.rating}"}) %>
                 </div>
             </div>
           </div> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622050936) do
+ActiveRecord::Schema.define(version: 20140622075447) do
 
   create_table "food_places", force: true do |t|
     t.string   "name"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140622050936) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "sash_id"
-    t.decimal  "stars"
-    t.integer  "times_rated"
+    t.decimal  "stars",        default: 0.0
+    t.integer  "times_rated",  default: 0
     t.decimal  "rating",       default: 0.0
   end
 

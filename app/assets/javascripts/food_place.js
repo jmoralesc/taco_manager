@@ -102,14 +102,21 @@ var classHighlight = 'highlight';
    
    });
 
- $('.stars').raty({readOnly : true});
+ $('.stars').raty({readOnly : true,
+                   score: function() {
+    return $(this).attr('data-score');
+  }});
 
- $('.eval').raty({ target     : '.count-stars',
+ $('.eval').raty({ score: function() {
+    return $(this).attr('data-score');
+  },
+                   target     : '.count-stars',
                    targetType : 'number',
                    targetKeep : true, 
                    click: function() {
                    $(this).parent().submit(); 
-  }});
+  }
+});
 
 });
 
