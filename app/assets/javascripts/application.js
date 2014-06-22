@@ -18,4 +18,6 @@
 //= require bootstrap-filestyle
 //= require food_place
 //= bootstrap-modalmanager
+//= require jquery.raty
+//= require jquery.raty.min
 //= requiere_tree.

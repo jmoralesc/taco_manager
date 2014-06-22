@@ -102,7 +102,7 @@ var classHighlight = 'highlight';
    
    });
 
-
+ $('#star').raty();
 });
 
 

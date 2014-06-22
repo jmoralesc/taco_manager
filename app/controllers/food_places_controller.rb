@@ -54,10 +54,11 @@ class FoodPlacesController < ApplicationController
     @menu_option = MenuOption.new(food_place_id: @food_place.id)
   end
 
+
   def food_place_params
     params.require(:food_place).permit(
       :name, :phone_number, :time, :address1, :address2,
       :city, :state, :photo, :latitude, :longitude
     )
-  end
+  end 
 end
