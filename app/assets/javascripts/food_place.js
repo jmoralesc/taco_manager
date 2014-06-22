@@ -102,7 +102,15 @@ var classHighlight = 'highlight';
    
    });
 
- $('#star').raty();
+ $('.stars').raty({readOnly : true});
+
+ $('.eval').raty({ target     : '.count-stars',
+                   targetType : 'number',
+                   targetKeep : true, 
+                   click: function() {
+                   $(this).parent().submit(); 
+  }});
+
 });
 
 

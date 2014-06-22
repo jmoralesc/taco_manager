@@ -30,6 +30,7 @@ class FoodPlacesController < ApplicationController
   end
 
   def update
+    binding.pry
     if @food_place.update_attributes(food_place_params)
       flash[:success] = t(:food_place_saved)
       redirect_to food_place_path(@food_place)
@@ -57,7 +58,7 @@ class FoodPlacesController < ApplicationController
 
   def food_place_params
     params.require(:food_place).permit(
-      :name, :phone_number, :time, :address1, :address2,
+      :name, :phone_number, :time, :address1, :address2,:stars,
       :city, :state, :photo, :latitude, :longitude
     )
   end 
