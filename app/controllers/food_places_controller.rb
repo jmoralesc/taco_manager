@@ -27,10 +27,10 @@ class FoodPlacesController < ApplicationController
   end
 
   def edit
+     authorize! :edit, @food_place
   end
 
   def update
-    
     if food_place_params[:stars] 
       stars = food_place_params[:stars].to_i + @food_place.stars
       @food_place.update_attributes(stars: stars)

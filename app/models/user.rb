@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
+  def admin?
+    admin
+  end
+  
   def apply_omniauth(omni)
    authentications.build(:provider => omni['provider'],
    :uid => omni['uid'],

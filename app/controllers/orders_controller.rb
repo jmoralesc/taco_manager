@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_action :find_food_places, only: [:new, :edit]
   before_action :find_food_place, only: [:edit, :show]
   before_action :find_menu_options, only: [:edit]
+  
   def index
     @orders = Order.accessible_by current_ability
   end
