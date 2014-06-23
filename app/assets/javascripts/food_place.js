@@ -107,9 +107,16 @@ var classHighlight = 'highlight';
     return $(this).attr('data-score');
   }});
 
+
  $('.eval').raty({ score: function() {
     return $(this).attr('data-score');
   },
+                   half:       true,
+                   size:       24,
+                   path: '/assets/' ,
+                   starHalf:   'star-half-big.png',
+                   starOff:    'star-off-big.png',
+                   starOn:     'star-on-big.png',
                    target     : '.count-stars',
                    targetType : 'number',
                    targetKeep : true, 

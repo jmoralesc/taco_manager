@@ -1,7 +1,11 @@
 <div id='general' class='panel panel-default'>   
   <div class="panel-body">
     <div class="page-header without-margin-top">
-      <h1><%= @food_place.name %><h1>
+        <h1><%= @food_place.name %></h1>
+<%= form_for @food_place, html: {class: 'form-horizontal', role: 'form', multipart: true} do |form| %>
+        <%= content_tag(:div,nil ,class: 'eval reubic-2', data: { score: "#{@food_place.rating}"}) %>
+        <%= form.hidden_field :stars, class: 'form-control count-stars'  %>
+      <% end %>
     </div>
     <%= image_tag @food_place.photo.big, {class: 'img-rounded'} %>
     <div class="row">
@@ -24,16 +28,6 @@
         </div> 
         <div class="row reubic">
           <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@food_place.latitude}%2C#{@food_place.longitude}", {class: 'img-rounded'} %>
-
-            <div class="col-sm-10 without-margin-top" >
-              <div class="page-header">
-              <h1><small><%= t(:rating)%></small></h1>
-            </div>
-            <%= form_for @food_place, html: {class: 'form-horizontal', role: 'form', multipart: true} do |form| %>
-              <%= content_tag(:div,nil ,class: 'eval', data: { score: "#{@food_place.rating}"}) %>
-              <%= form.hidden_field :stars, class: 'form-control count-stars'  %>
-            <% end %>
-          </div>
         </div> 
       </div>
       <div class="col-md-6">
