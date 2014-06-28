@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     else 
       can :update, FoodPlace, user_id: user.id
-      can :edit, Order, user_id: user.id
+      can :read, Order, user_id: user.id
     end
   end
 

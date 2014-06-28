@@ -2,11 +2,23 @@
   <div class="panel-heading">
     <div class="page-header without-margin">
       <h1> <%= t(:food_places) %></h1>  
+      <select id="style_display" class="reubic-2">
+        <% if @style == 'thumbnails' %>
+          <option value="thumbnails" selected ><%=t(:thumbnails) %></option> 
+          <option value="list"><%=t(:list)%></option>
+        <% else %>
+          <option value="thumbnails"><%=t(:thumbnails) %></option> 
+          <option value="list" selected><%=t(:list)%></option>
+        <% end %>
+      </select>
       <%= link_to t(:new_food_place), new_food_place_path, {class: 'btn btn-primary reubic-left', role: 'button'}  %>
     </div>
   </div>
+
   <div class="panel-body"> 
-    <div id="food_places_list" class="row trio">
+     <% if @style == 'thumbnails' %>
+    
+    <div id="food_places_thumbnails" class="row trio">
       <% @food_places.each do |food_place| %>
         <%= link_to food_place_path(food_place) do %>
           <div class="col-sm-2 col-md-4">
@@ -21,7 +33,27 @@
         <% end %>
       <% end %>
     </div>
-  </div>   
+
+<% else %>
+
+    <div id="food_places_list" class="row trio">
+      <div class="col-sm-10">
+        <table class="table table-hover table-bordered">  
+          <tr>
+            <th><%=t(:food_place) %></th>
+            <th><%=t(:rating) %></th>
+          </tr> 
+          <% @food_places.each do |food_place| %>
+            <tr class="pop-preview" data-container="body" data-toggle="popover", data-placement="<%= @positions.sample %>" data-img="<%=food_place.photo.pop_over%>">
+              <td><%= link_to food_place.name, food_place_path(food_place) %></td>
+              <td><%= content_tag(:div,nil ,class: 'stars', data: { score: "#{food_place.rating}"}) %></td>
+            <tr>
+          <% end %>
+        </table>
+      </div>
+    </div>   
+<% end %>
+</div>
 </div>
 
 <%= paginate @food_places %>

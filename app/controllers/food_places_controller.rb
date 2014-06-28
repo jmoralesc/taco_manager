@@ -5,7 +5,9 @@ class FoodPlacesController < ApplicationController
   before_action :find_menu_options, only: [:edit, :update]
 
   def index
-    @food_places = FoodPlace.order('name').page(params[:page]).per(6)
+    @food_places = FoodPlace.order('name').page(params[:page]).per(params[:per] || 6)
+    @style = params[:style] || 'thumbnails' 
+    @positions = %w(right top left bottom)
   end
 
   def show
@@ -38,7 +40,6 @@ class FoodPlacesController < ApplicationController
       @food_place.update_attributes(rating: @food_place.stars/ @food_place.times_rated)
       redirect_to food_place_path(@food_place)
     elsif @food_place.update_attributes(food_place_params)
-      binding.pry
       flash[:success] = t(:food_place_saved)
       redirect_to food_place_path(@food_place)
       else

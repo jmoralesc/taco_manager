@@ -26,8 +26,10 @@ class OrdersController < ApplicationController
       flash[:success] = t(:order_saved)
       redirect_to edit_order_path(@order)
       @a = User.find(params[:invitedu][:id])
-      @a.each do |user|
-         UserMail.invitation(user, @order).deliver
+      if @a 
+        @a.each do |user|
+          UserMail.invitation(user, @order).deliver
+        end
       end  
       else
         flash[:error] = t(:order_not_saved)
@@ -53,6 +55,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
+    redirect_to orders_path
   end
 
   private

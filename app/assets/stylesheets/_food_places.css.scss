@@ -1,5 +1,5 @@
 @import 'bootstrap';
-#food_places_list {
+#food_places_thumbnails {
   .reubic-left {
   	display: block;
     margin-top: 10px;
@@ -102,6 +102,10 @@
     border-color: gray;
     font-weight: bold;
      
+}
+
+.hide {
+  display: none;
 }
 
 .carousel-control.left, .carousel-control.right {

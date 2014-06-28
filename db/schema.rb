@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140623151940) do
     t.string   "photo"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "sash_id"
     t.decimal  "stars",        default: 0.0
     t.integer  "times_rated",  default: 0
     t.decimal  "rating",       default: 0.0
@@ -53,8 +52,14 @@ ActiveRecord::Schema.define(version: 20140623151940) do
     t.string   "photo"
   end
 
-# Could not dump table "orders" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "orders", force: true do |t|
+    t.integer  "food_place_id"
+    t.integer  "user_id"
+    t.decimal  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "invited_users"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

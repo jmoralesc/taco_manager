@@ -1,4 +1,4 @@
-<%= form_for @order, html: {class: 'form-horizontal', role: 'form'} do |form| %>
+<%= form_for @order, html: {class: 'form-horizontal pay', role: 'form'} do |form| %>
   <div class="field col-md-6">
     <div class='panel panel-default'>  
       <div class="panel-body">
@@ -6,7 +6,6 @@
           <h1><small><%= t(:order_details)%></small></h1>
         </div>
         
-</button>
         <table class="table table-striped table-bordered">  
           <tr>
             <th><%=t(:user) %></th>
@@ -15,8 +14,8 @@
             <th><%=t(:subtotal) %></th> 
             <th><%=t(:payed) %></th>
           </tr> 
-          <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal pay', role: 'form'} do |menu_line_item| %>
-            <tr>
+          <%= form.fields_for :menu_line_items, html: {class: 'form-horizontal', role: 'form'} do |menu_line_item| %>
+            <tr class="<%= 'success' if menu_line_item.object.payed == 1 %> <%='danger' if menu_line_item.object.payed == 0 %>">
               <td><%= menu_line_item.object.user.username %></td>
               <td><%= menu_line_item.object.menu_option.name %></td>
               <td><%= menu_line_item.object.quantiy %></td>
