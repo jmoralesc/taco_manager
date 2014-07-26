@@ -21,9 +21,10 @@ class FoodPlacesController < ApplicationController
     @food_place = current_user.food_places.build(food_place_params)
     if @food_place.save
       flash[:success] = t(:food_place_saved)
+    
       redirect_to food_place_path(@food_place)
       else
-        flash[:error] = t(:food_place_not_saved)
+        flash[:danger] = t(:food_place_not_saved)
         render :new
     end
   end
@@ -33,17 +34,16 @@ class FoodPlacesController < ApplicationController
   end
 
   def update
-    if food_place_params[:stars] 
-      stars = food_place_params[:stars].to_i + @food_place.stars
-      @food_place.update_attributes(stars: stars)
-      @food_place.update_attributes(times_rated: @food_place.times_rated + 1)
-      @food_place.update_attributes(rating: @food_place.stars/ @food_place.times_rated)
+    if  @food_place.update_attributes(stars: food_place_params[:stars].to_i + 
+                                             @food_place.stars)
+      @food_place.update_attributes(times_rated: @food_place.times_rated + 1, 
+                                    rating: @food_place.stars / (@food_place.times_rated + 1))
       redirect_to food_place_path(@food_place)
     elsif @food_place.update_attributes(food_place_params)
       flash[:success] = t(:food_place_saved)
       redirect_to food_place_path(@food_place)
       else
-        flash[:error] = t(:food_place_not_saved)
+        flash[:danger] = t(:food_place_not_saved)
         render :edit
     end
   end

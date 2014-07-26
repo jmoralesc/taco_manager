@@ -1,4 +1,5 @@
-<div class="field col-md-6">
+
+    <div class="field col-md-6">
       <div class='panel panel-default'>  
         <div class="panel-body">
           <fieldset>
@@ -15,7 +16,7 @@
                     <td><%= order.food_place.name %></td>
                     <td><%= order.created_at.to_date.to_formatted_s(:long_ordinal)%></td>
                     <td><%= order.total %></td>
-                    <td><%= link_to t(:order_details), order_path(order)%> </td>  
+                    <td><%= link_to t(:order_details), order_path(order), class: 'details'%> </td>  
                   </tr>
               <% end %>
             </table>

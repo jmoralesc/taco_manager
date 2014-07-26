@@ -12,3 +12,4 @@ FactoryGirl.define do
     user_id {User.last.id}
   end
 end
+

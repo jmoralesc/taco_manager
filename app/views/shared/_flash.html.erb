@@ -1,0 +1,5 @@
+<div class="col-sm-10">
+<% flash.each do |key, msg| %>
+  <%= content_tag :div, msg, :id => key, class: 'flash-decoration alert-' + key %>
+<% end %>
+</div>

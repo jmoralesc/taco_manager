@@ -1,11 +1,13 @@
 
 module ControllerMacros
-#  def login_admin
-#    before(:each) do
-#      @request.env["devise.mapping"] = Devise.mappings[:admin]
-#      sign_in FactoryGirl.create(:admin) 
-#    end
-#  end
+  def login_admin
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      admin = create :user
+      admin.update_attributes(admin: true)
+      sign_in admin
+    end
+  end
 
   def login_user
     before(:each) do

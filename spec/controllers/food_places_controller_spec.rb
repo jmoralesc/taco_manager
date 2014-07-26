@@ -74,11 +74,23 @@ describe FoodPlacesController do
 
   describe 'POST create' do
     login_user
-
-    it 'redirects to food place page' do
-      post :create, food_place: attributes_for(:food_place)
-      expect(response).to redirect_to food_place_url(FoodPlace.last.id)
-    end  
+    
+    context 'when the food place is created correctly' do
+      it 'redirects to food place page' do
+        binding
+        post :create, food_place: attributes_for(:food_place)
+        expect(response).to redirect_to food_place_url(FoodPlace.last.id)
+        expect( subject.request.flash[:success] ).to_not be_nil
+      end  
+    end
+    
+    context 'when the food place is not created correctly' do
+      it 'renders to new food place template' do
+        post :create, food_place: {food_place: FoodPlace.new, name: "Taquitos"}
+        expect( subject.request.flash[:error] ).to_not be_nil
+        expect(response).to render_template(:new)
+      end  
+    end
 
   end
 
@@ -102,7 +114,7 @@ describe FoodPlacesController do
       	create :user
   	    create :food_place  
   	  end
-  	  it 'avoid others user editing' do
+  	  it 'avoids others user editing' do
        get :edit, id: FoodPlace.last.id
        expect(response).to redirect_to root_url 
   	  end 	
@@ -116,11 +128,33 @@ describe FoodPlacesController do
   	before do
   	  create :food_place  
   	end
+    
+    context 'when the menu option is updated correctly' do
+  	  it 'updates the given food place' do
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, email: Faker::Internet.email)
+        expect(response).to redirect_to food_place_url(FoodPlace.last)
+  	  end
+    end  	
+    
+    context 'when the food place is rated' do
+      it 'updates the food place rating' do
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, stars: '5')
+        expect(assigns(:stars)).to_not be_nil
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, stars: assigns(:stars))
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, times_rated: FoodPlace.last.times_rated + 1)
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, rating: FoodPlace.last.stars/FoodPlace.last.times_rated)
 
-  	it 'updates a food_place' do
-      put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, email: Faker::Company.name)
-      expect(response).to redirect_to food_place_url(FoodPlace.last.id)
-  	end	
+        expect(response).to redirect_to food_place_url(FoodPlace.last)
+      end   
+    end 
+
+    context 'when the menu option is not updated correctly' do
+      it 'renders the edit food place template' do
+        put :update, id: FoodPlace.last.id ,food_place: attributes_for(:food_place, name: '')
+        expect( subject.request.flash[:error] ).to_not be_nil
+        expect(response).to render_template(:edit)
+      end
+    end   
 
   end
 
