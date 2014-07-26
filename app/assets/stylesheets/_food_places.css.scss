@@ -136,9 +136,18 @@
 }
  
 .table { 
-input[type="checkbox"] {
+  input[type="checkbox"] { 
     margin: 0 auto;
-  display: block;
+    display: block;
+  }
+}
 
+.flash-decoration {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 40px 10px; 
 }
-}
+
+

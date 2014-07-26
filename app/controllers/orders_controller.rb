@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
         end
       end  
       else
-        flash[:error] = t(:order_not_saved)
+        flash[:danger] = t(:order_not_saved)
         render :new
     end
   end
@@ -42,13 +42,13 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update_attributes(order_params)
-      flash[:success] = t(:order_saved)
+      flash.now[:success] = t(:order_saved)
       @total = 0
       update_menu_lines(@order.menu_line_items, current_user)
       @order.update_attributes(total: @total)
       redirect_to :back
       else
-        flash[:error] = t(:order_not_saved)
+        flash.now[:danger] = t(:order_not_saved)
         render :edit
     end
   end
@@ -74,11 +74,11 @@ class OrdersController < ApplicationController
 
   def update_menu_lines(menu_line_items, user)
     menu_line_items.each do |menu_line_item|
-      unless menu_line_item.user
         subtotal = menu_line_item.menu_option.price * menu_line_item.quantiy
-        menu_line_item.update_attributes(subtotal: subtotal)
+        menu_line_item.update_attributes(subtotal: subtotal, 
+                                         payed: menu_line_item.payed)
+      unless menu_line_item.user
         menu_line_item.update_attributes(user_id: user.id)
-        menu_line_item.update_attributes(payed: menu_line_item.payed)
       end
       @total += menu_line_item.subtotal
     end

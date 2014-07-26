@@ -17,7 +17,7 @@ class MenuOptionsController < ApplicationController
       flash[:success] = t(:menu_option_saved)
       redirect_to food_place_path(@food_place)
     else
-      flash[:error] = t(:menu_option_not_saved)
+      flash[:danger] = t(:menu_option_not_saved)
       render :new
     end
   end
@@ -30,7 +30,7 @@ class MenuOptionsController < ApplicationController
       flash[:success] = t(:menu_option_saved)
       redirect_to food_place_menu_option_path(@food_place, @menu_option)
      else
-       flash[:error] = t(:menu_option_not_saved)
+       flash[:danger] = t(:menu_option_not_saved)
        render :edit
     end
   end

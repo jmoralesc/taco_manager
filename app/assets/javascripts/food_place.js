@@ -157,6 +157,19 @@ var classHighlight = 'highlight';
 
  });
 
+ $('.close').on('click', function(){
+
+   id = '#' + $(this).attr('data-id');
+   $(id).remove();
+
+   
+
+ });
+
+setTimeout(function(){
+    $('.flash-decoration').remove();
+  }, 1000);
+
 });
 
 

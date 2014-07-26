@@ -4,7 +4,7 @@
       <div class='panel-heading'>
         <%= f.select :menu_option_id, @menu_options.map {|option| [option.name, option.id, {'data-price'=> option.price}]}, {} ,{class: 'select chosen'} %>    
     
-        <%= link_to_remove_association f , {:class => 'close'} do %>
+        <%= link_to_remove_association f , {:class => 'close', data: {id: 'line-item-' + f.object.id.to_s} } do %>
          <span class="glyphicon glyphicon-remove"></span>
         <% end %>
       </div>
